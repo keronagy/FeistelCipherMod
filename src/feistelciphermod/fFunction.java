@@ -64,10 +64,10 @@ public class fFunction {
         
 
     }
-    public String run()
+    public String run(long msg , long key)
     {
-        long key = 260080082649971L;
-        Expand(98036585L);
+        
+        Expand(msg);
         KeyXor(key);
         Sboxes();
         return afterSBoxes;
