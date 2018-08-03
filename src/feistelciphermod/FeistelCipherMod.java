@@ -17,7 +17,8 @@ public class FeistelCipherMod {
     public static void main(String[] args) {
         // TODO code application logic here
         fFunction f = new fFunction();
-        f.run();
+        f.run(98036585L,260080082649971L);
+        
     }
     
 }
