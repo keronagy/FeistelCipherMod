@@ -23,31 +23,31 @@ public class fFunction {
     public  void Expand(long e){
         
         String temp = Long.toBinaryString(e);
-        System.out.println("before 32 append");
-        System.out.println(temp);
+//        System.out.println("before 32 append");
+//        System.out.println(temp);
         
         while (temp.length() < 32)
             temp = "0" + temp;
-        System.out.println("after 32 append");
-        System.out.println(temp);
+//        System.out.println("after 32 append");
+//        System.out.println(temp);
         for (int i = 0; i < 48; i++) {
             expanded+= temp.charAt(expantionArray[i]);
         }
-        System.out.println("expanded 32->48 ");
-        System.out.println(expanded);
+//        System.out.println("expanded 32->48 ");
+//        System.out.println(expanded);
     }
     public void KeyXor(long keyLong){
         key = Long.toBinaryString(keyLong);
         while (key.length() < 48)
             key = "0" + key;
-        System.out.println(key);
+//        System.out.println(key);
         StringBuilder sb = new StringBuilder();
 
         for(int i = 0; i < key.length(); i++)
             sb.append((key.charAt(i) ^ expanded.charAt(i)));
 
         afterKeyXor = sb.toString();
-        System.out.println("result = \n" + afterKeyXor);    
+//        System.out.println("result = \n" + afterKeyXor);    
     }
     
     
@@ -56,21 +56,23 @@ public class fFunction {
        
         
         for (int i = 0; i < pairs.length; i++) {
-            System.out.println(pairs[i]);
+//            System.out.println(pairs[i]);
             afterSBoxes+= pairs[i].substring(2, 10);
-            System.out.println("afterSBoxes = " + afterSBoxes);
+//            System.out.println("afterSBoxes = " + afterSBoxes);
         }
         
         
 
     }
-    public String run(long msg , long key)
+    
+    
+    public long run(long msg , long key)
     {
         
         Expand(msg);
         KeyXor(key);
         Sboxes();
-        return afterSBoxes;
+        return new BigInteger(afterSBoxes, 2).longValue() ;
         
     }
 
