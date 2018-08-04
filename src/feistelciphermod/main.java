@@ -18,10 +18,13 @@ public class main {
     
     public static void main(String[] args) {
         long test = 898242749842849L;
-        String padding = "0000000000000000000000000000000000000000000000000000000000000000";
+                //try this form
+        KeyGenerator kg = new KeyGenerator(8);
+        long dgf[] = kg.generateRoundKeys(test);
         
+        String padding = "0000000000000000000000000000000000000000000000000000000000000000";
         FiestelCipherMod  f = new FiestelCipherMod();
-  
+        
         long E = f.Encrypt(test);
         
    

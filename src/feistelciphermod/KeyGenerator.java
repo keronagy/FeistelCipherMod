@@ -15,6 +15,7 @@ public class KeyGenerator {
     
     private Random r;
     private long[] keys;
+    private int numberOfRounds;
     public static final byte[] PC1 = {
         57, 49, 41, 33, 25, 17, 9,
         1, 58, 50, 42, 34, 26, 18,
@@ -35,6 +36,14 @@ public class KeyGenerator {
         44, 49, 39, 56, 34, 53,
         46, 42, 50, 36, 29, 32
     };
+
+    public KeyGenerator(int numberOfRounds) {
+        this.r = new Random();
+        this.numberOfRounds = numberOfRounds;
+        this.keys = new long[numberOfRounds];
+    }
+    
+    
 
     private static long permute(byte[] table, int srcWidth, long src) {
         long dst = 0;
@@ -66,11 +75,10 @@ public class KeyGenerator {
         return nk;
     }
       
-      private long[] generateRoundKeys(long key,int numberOfRounds) {
-        keys = new long[numberOfRounds];
+      public long[] generateRoundKeys(long key) {
         for (int i = 0; i < numberOfRounds; i++) {
-            keys[i] = generateKey(key, i);
-            key = keys[i];
+            this.keys[i] = generateKey(key, i);
+            key = this.keys[i];
         }
         return keys;
     }
