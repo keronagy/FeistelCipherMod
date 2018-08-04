@@ -12,11 +12,14 @@ import static java.lang.Math.pow;
  * @author ASUS
  */
 public class FiestelCipherMod {
-  long[] keys = {273409523799523L,94197096021383L,114827730219342L,46625876281884L,
-                    280391729122195L,214218025129539L,251859736875900L,213159350773165L};
+  long[] keys = {};
   
   fFunction f = new fFunction();
-          
+  
+    FiestelCipherMod(long[] keys)
+  {
+      this.keys=keys;
+  }
        
 public long Encrypt(long fullInput)
 {
