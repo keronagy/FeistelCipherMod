@@ -5,6 +5,8 @@
  */
 package feistelciphermod;
 
+import java.util.Random;
+
 /**
  *
  * @author koko_
@@ -18,14 +20,18 @@ public class main {
     
     public static void main(String[] args) {
         long test = 898242749842849L;
-        String padding = "0000000000000000000000000000000000000000000000000000000000000000";
-        
+       
+      Random  r= new Random();
+
+    
+      long randomKey = r.nextLong();
         FiestelCipherMod  f = new FiestelCipherMod();
+        
+        KeyGenerator k = new KeyGenerator();
+        //f.keys= k.generateRoundKeys(randomKey,8);
   
         long E = f.Encrypt(test);
-        
-   
-//        
+    
         long D = f.Decrypt(E);
        System.out.println("Initial     " +PrintWithPadding(test)); 
        System.out.println("Encrypted   " + PrintWithPadding(E));

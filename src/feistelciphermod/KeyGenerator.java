@@ -66,7 +66,7 @@ public class KeyGenerator {
         return nk;
     }
       
-      private long[] generateRoundKeys(long key,int numberOfRounds) {
+      public long[] generateRoundKeys(long key,int numberOfRounds) {
         keys = new long[numberOfRounds];
         for (int i = 0; i < numberOfRounds; i++) {
             keys[i] = generateKey(key, i);

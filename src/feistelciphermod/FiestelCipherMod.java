@@ -21,21 +21,19 @@ public class FiestelCipherMod {
 public long Encrypt(long fullInput)
 {
     Text newSplittedText;
-            
-//    System.out.println((Long.toBinaryString((long)fullInput)));
+
     newSplittedText = Text.Split(fullInput);
-//    System.out.println((Long.toBinaryString((long)newSplittedText.left) + "    " + Long.toBinaryString((long)newSplittedText.right)));
+
      for(int i =0; i<8; i++)
      {
     newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1), (newSplittedText.left ^  f.run(newSplittedText.right,keys[i])) & ((long)pow(2,32)-1) );
-    System.out.println(i+ "   " + (Long.toBinaryString((long)newSplittedText.left) + "    " + Long.toBinaryString((long)newSplittedText.right)));
-//     System.out.println(Long.toBinaryString((long)newSplittedText.left));
-//     System.out.println(Long.toBinaryString((long)newSplittedText.right));
+    System.out.println("e"+i+ "   " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
+
      
      if(i==7)
      {
      newSplittedText = Text.Swap(newSplittedText);
-     System.out.println(i+ "   " + (Long.toBinaryString((long)newSplittedText.left) + "    " + Long.toBinaryString((long)newSplittedText.right)));
+     System.out.println("e7S"+ "  " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
      }
      
      }
@@ -45,16 +43,18 @@ public long Encrypt(long fullInput)
 public long Decrypt(long fullInput)
 {
     Text newSplittedText;
-//     System.out.println("d"+(Long.toBinaryString((long)fullInput)));
+
     newSplittedText = Text.Split(fullInput);
     
      for(int i =0; i<8; i++)
      {
             newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1), (newSplittedText.left ^  f.run(newSplittedText.right,keys[7-i])) & ((long)pow(2,32)-1) );
-            System.out.println("d"+i+ "   " + (Long.toBinaryString((long)newSplittedText.left) + "    " + Long.toBinaryString((long)newSplittedText.right)));
+            System.out.println("d"+i+ "   " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
             if(i==7)
      {
+    
      newSplittedText = Text.Swap(newSplittedText);
+     System.out.println("d7S"+ "  " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
      }
      }
      return (newSplittedText.left << 32) + newSplittedText.right;
