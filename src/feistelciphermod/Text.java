@@ -33,7 +33,7 @@ public static Text Swap(Text splittedText)
 {
   long temp = splittedText.left;
   long nLeftPart = splittedText.right;
-  long nRightPart = splittedText.left; 
+    long nRightPart = splittedText.left; 
   
   return new Text(nLeftPart,nRightPart);
 }

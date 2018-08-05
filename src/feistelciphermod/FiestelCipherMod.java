@@ -29,14 +29,13 @@ public long Encrypt(long fullInput)
 
      for(int i =0; i<8; i++)
      {
-    newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1), (newSplittedText.left ^  f.run(newSplittedText.right,keys[i])) & ((long)pow(2,32)-1) );
-    System.out.println("e"+i+ "   " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
-
+    newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1),
+            (newSplittedText.left ^  f.run(newSplittedText.right,keys[i])) & ((long)pow(2,32)-1) );
      
      if(i==7)
      {
      newSplittedText = Text.Swap(newSplittedText);
-     System.out.println("e7S"+ "  " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
+     
      }
      
      }
@@ -51,15 +50,16 @@ public long Decrypt(long fullInput)
     
      for(int i =0; i<8; i++)
      {
-            newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1), (newSplittedText.left ^  f.run(newSplittedText.right,keys[7-i])) & ((long)pow(2,32)-1) );
-            System.out.println("d"+i+ "   " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
+            newSplittedText = new Text(newSplittedText.right & ((long)pow(2,32)-1), 
+                    (newSplittedText.left ^  f.run(newSplittedText.right,keys[7-i])) & ((long)pow(2,32)-1) );
+           
             if(i==7)
      {
     
      newSplittedText = Text.Swap(newSplittedText);
-     System.out.println("d7S"+ "  " + (main.PrintWithPadding(newSplittedText.left) + "    " + main.PrintWithPadding(newSplittedText.right)));
+  
      }
-     }
+     }  
      return (newSplittedText.left << 32) + newSplittedText.right;
 }
 
