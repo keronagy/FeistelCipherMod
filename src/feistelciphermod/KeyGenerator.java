@@ -16,7 +16,7 @@ public class KeyGenerator {
     private Random r;
     private long[] keys;
     private int numberOfRounds;
-    public static final byte[] PC1 = {
+    public static final byte[] t1 = {
         57, 49, 41, 33, 25, 17, 9,
         1, 58, 50, 42, 34, 26, 18,
         10, 2, 59, 51, 43, 35, 27,
@@ -26,7 +26,7 @@ public class KeyGenerator {
         14, 6, 61, 53, 45, 37, 29,
         21, 13, 5, 28, 20, 12, 4,
     };
-    public static final byte[] PC2 = {
+    public static final byte[] t2 = {
         14, 17, 11, 24, 1, 5,
         3, 28, 15, 6, 21, 10,
         23, 19, 12, 4, 26, 8,
@@ -53,25 +53,25 @@ public class KeyGenerator {
         }
         return dst;
     }
-    public int leftCircShift(int bits, int k) {
+    public int lcs(int bits, int k) {
         return (bits << k) | (bits >> (Integer.SIZE - k));
 
     }
     
       private long generateKey(long k, int round) {
 
-        k = permute(PC1, 64, k);
+        k = permute(t1, 64, k);
 
         int lsbs = (int) (((0xFFFF0000) & (k)) >> 16);
         int msbs = (int) ((0x0000FFFF) & (k));
         int s = (round == 0 || round == 2 || round == 6) ? 1 : 2;
 
-        lsbs = leftCircShift(lsbs, s);
-        msbs = leftCircShift(msbs, s);
+        lsbs = lcs(lsbs, s);
+        msbs = lcs(msbs, s);
         long nk = (((long) lsbs) << 32) | (msbs & 0xffffffffL);
         long mask = r.nextLong()*(1 << 8 | 1 << 16 | 1 << 24 | 1 << 32 | 1 << 40 | 1 << 48 | 1 << 56);
         nk^=mask;
-        nk = permute(PC2, 64, nk);
+        nk = permute(t2, 64, nk);
         return nk;
     }
       

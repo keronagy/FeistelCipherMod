@@ -103,7 +103,12 @@ public class fFunction {
 //            afterSBoxes+= pairs[i].substring(2, 10);
 ////            System.out.println("afterSBoxes = " + afterSBoxes);
 //        }
-        result = (long) sub(new BigInteger(afterKeyXor, 2).intValue());
+        int x = new BigInteger(afterKeyXor, 2).intValue();
+        if(x < 0) x*=-1;
+        
+        x = x%256;
+        
+        result = (long) sub(x%256);
         
         
         
