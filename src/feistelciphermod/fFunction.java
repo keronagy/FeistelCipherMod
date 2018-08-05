@@ -70,11 +70,11 @@ public class fFunction {
     }
     public void Perm()
     {
-        System.out.println(afterSBoxes.length());
-        System.out.println(permutationArray.length);
+//        System.out.println(afterSBoxes.length());
+//        System.out.println(permutationArray.length);
         for (int i = 0; i < afterSBoxes.length(); i++) {
-            System.out.println("i = " + i);
-            System.out.println(permutationArray[i]);
+//            System.out.println("i = " + i);
+//            System.out.println(permutationArray[i]);
             afterPerm += afterSBoxes.charAt(permutationArray[i]);
         }
     }
