@@ -19,6 +19,8 @@ public class fFunction {
     String key;
     String afterKeyXor ;
     String afterSBoxes = "";
+    String afterPerm = "";
+    final int [] permutationArray = { 20, 8, 16, 27, 24, 15, 23, 0, 29, 4, 10, 7, 12, 31, 17, 30, 5, 9, 28, 19, 6, 3, 11, 14, 25, 18, 2, 1, 21, 13, 22, 26};
     
     public  void Expand(long e){
         
@@ -62,17 +64,30 @@ public class fFunction {
         }
         
         
+        
 
+    }
+    public void Perm()
+    {
+        System.out.println(afterSBoxes.length());
+        System.out.println(permutationArray.length);
+        for (int i = 0; i < afterSBoxes.length(); i++) {
+            System.out.println("i = " + i);
+            System.out.println(permutationArray[i]);
+            afterPerm += afterSBoxes.charAt(permutationArray[i]);
+        }
     }
     
     
     public long run(long msg , long key)
     {
-        
+        afterPerm="";
+        afterSBoxes="";
         Expand(msg);
         KeyXor(key);
         Sboxes();
-        return new BigInteger(afterSBoxes, 2).longValue() ;
+        Perm();
+        return new BigInteger(afterPerm, 2).longValue() ;
         
     }
 
