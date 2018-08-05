@@ -42,9 +42,10 @@ public class main {
 
      
         
-    TestAvalanche.Test();
-        
-        
+    //TestAvalanche.CalculateAvalanche();
+    //TestAvalanche.TestEncryptionAndDecryption();
+        TestAvalanche.CalculatePerformance();
+       
        
         
     }
