@@ -50,7 +50,7 @@ public class TestAvalanche {
 //      System.out.println("Deccrypted   " + PrintWithPadding(D2));
     }
         double avg = k/1000;
-        System.out.println("avg = " + avg);
+        System.out.println("avg Avalanche in 1000 tests = " + avg*100 +"%");
     }
     public static int countSetBits(long c)
     {
