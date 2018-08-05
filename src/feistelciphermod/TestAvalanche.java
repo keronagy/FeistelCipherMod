@@ -24,11 +24,11 @@ public class TestAvalanche {
         System.out.println("toggel = " + toggel);
       KeyGenerator kg = new KeyGenerator(8);
       long dgf[] = kg.generateRoundKeys(8982431342848L);
-      long dgf2[] = kg.generateRoundKeys(8982431342849L);
+      long dgf2[] = kg.generateRoundKeys(8982431342848L);
       FiestelCipherMod  f = new FiestelCipherMod(dgf);
       FiestelCipherMod  f2 = new FiestelCipherMod(dgf2);
       long E = f.Encrypt(8982431342848L);
-      long E2 = f2.Encrypt(8982431342848L);
+      long E2 = f2.Encrypt(8982431342849L);
       
       long D = f.Decrypt(E);
       long D2 = f2.Decrypt(E2);
@@ -42,16 +42,17 @@ public class TestAvalanche {
       System.out.println("Decrypted   " + PrintWithPadding(D));
       System.out.println("Deccrypted   " + PrintWithPadding(D2));
     }
-    public static int countSetBits(long n)
+    public static int countSetBits(long c)
     {
-        int count = 0;
-        while (n != 0) {
-            count += n & 1;
-            n >>= 1;
-            
+        int count=0;
+  
+        while(c!=0){
+         c = c &(c-1);
+         count++;
         }
         return count;
-    }
+       }
+    
     
         public static String PrintWithPadding (long val)
     {
